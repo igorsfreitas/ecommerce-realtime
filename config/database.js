@@ -8,6 +8,8 @@ const Helpers = use('Helpers')
 
 const Url = require('url-parse')
 const DATABASE_URL = new Url(Env.get('DATABASE_URL'))
+const DATABASE_HOST = new URL(DATABASE_URL.host)
+DATABASE_HOST.port = ''
 
 module.exports = {
   /*
@@ -84,7 +86,7 @@ module.exports = {
   pg: {
     client: 'pg',
     connection: {
-      host: Env.get('DB_HOST', 'ec2-54-243-193-59.compute-1.amazonaws.com'),
+      host: Env.get('DB_HOST', DATABASE_HOST.toString()),
       port: Env.get('DB_PORT', ''),
       user: Env.get('DB_USER', DATABASE_URL.username),
       password: Env.get('DB_PASSWORD', DATABASE_URL.password),
