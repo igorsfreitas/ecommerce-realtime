@@ -8,6 +8,10 @@ Route.group(()=>{
      * Categories Resource Routes
      */
     Route.resource('categories', 'CategoryController').apiOnly()
+        .validator(new Map([
+            [['categories.store'], ['Admin/StoreCategory']],
+            [['categories.update'], ['Admin/StoreCategory']]
+        ]))
 
     /**
      * Products Resource Routes
@@ -24,7 +28,11 @@ Route.group(()=>{
      */
     Route.post('orders/:id/discount', 'OrderController.applyDiscount')
     Route.delete('orders/:id/discount', 'OrderController.removeDiscount')
-    Route.resource('orders', 'OrderController').apiOnly()
+    Route.resource('orders', 'OrderController').apiOnly().validator( new Map(
+        [
+            [['orders.store'], ['Admin/StoreOrder']]
+        ]
+    ))
 
     /**
      * Image Resource Routes
