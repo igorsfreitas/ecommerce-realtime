@@ -20,8 +20,15 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async handle (error, { request, response }) {
-    response.status(error.status).send({errors: error.messages})
+  async handle (error, { session, response}) {
+    if (error.name === 'ValidationException') {
+      response.status(error.status).send({
+        error: 'ValidationError',
+        messages: error.messages
+      })
+      return
+    }
+    response.status(error.status).send(error.message)
   }
 
   /**
