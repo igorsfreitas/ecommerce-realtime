@@ -20,7 +20,7 @@ class ProductController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, paginate, transform }) {
+  async index ({ request, response, pagination, transform }) {
     const name = request.input('name')
     const query = Product.query()
     if(name){
