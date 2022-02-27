@@ -31,7 +31,7 @@
     "adonis-acl": "^1.1.1",
     "adonis-bumblebee": "^2.0.0",
     "pg": "^7.11.0",
-    "url-parse": "^1.4.7"
+    "url-parse": "^1.5.8"
   },
   "devDependencies": {},
   "autoload": {
